@@ -1,9 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_food_hub/common/widget/custom_button.dart';
 import 'package:flutter_food_hub/common/widget/custom_input.dart';
 import 'package:flutter_food_hub/core/configs/assets/app_images.dart';
 import 'package:flutter_food_hub/core/configs/routes/app_router.dart';
 import 'package:flutter_food_hub/core/configs/theme/app_colors.dart';
+import 'package:flutter_food_hub/core/constants/api_urls.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
@@ -14,19 +16,25 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final _nameController = TextEditingController();
+  final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  final dio = Dio();
+
   void _handleSignUp() async {
     context.push(AppRouter.verify);
-    // ignore: avoid_print
-    print({_nameController.text, _emailController.text, _passwordController.text});
+    final response = await dio.post(ApiUrls.register, data: {
+      'email': _emailController.text,
+      'password': _passwordController.text,
+      'name': _fullNameController.text,
+    });
+    print(response.data);
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -58,7 +66,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   SizedBox(height: kHeight * 0.03),
                   CustomInput(
-                    controller: _nameController,
+                    controller: _fullNameController,
                     labelText: "Full name",
                     hintText: "Full name",
                     keyboardType: TextInputType.text,
