@@ -50,7 +50,11 @@ class VerifyPage extends StatelessWidget {
                   enabled: true,
                   width: 2,
                 ),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  if (value.length == 6) {
+                    print(value);
+                  }
+                },
               ),
               SizedBox(height: kHeight * 0.02),
               Row(
