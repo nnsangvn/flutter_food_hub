@@ -46,7 +46,12 @@ class _SignupPageState extends State<SignupPage> {
         child: BlocListener<ButtonStateCubit, ButtonState>(
           listener: (context, state) {
             if (state is ButtonSuccessState) {
-              context.go(AppRouter.verify);
+              context.go(
+                AppRouter.verify,
+                extra: {
+                  'email': _emailController.text.toString(),
+                },
+              );
               Toasts().showToast("Đăng ký thành công", ToastType.success);
             }
             if (state is ButtonFailureState) {

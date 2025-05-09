@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_food_hub/core/configs/navigation/navigation_cubit.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/signin.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/signup.dart';
-import 'package:flutter_food_hub/presentation/auth/pages/verify.dart';
+import 'package:flutter_food_hub/presentation/auth/pages/verify_code.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/welcome_page.dart';
 import 'package:flutter_food_hub/presentation/cart/pages/cart_page.dart';
 import 'package:flutter_food_hub/presentation/home/pages/home_page.dart';
@@ -85,7 +85,11 @@ abstract final class AppRouter {
       GoRoute(
         path: verify,
         name: verify,
-        builder: (context, state) => const VerifyPage(),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          final email = extra['email'] as String;
+          return VerifyCodePage(email: email);
+        },
       ),
     ],
   );
