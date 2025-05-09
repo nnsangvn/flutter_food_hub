@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_food_hub/common/bloc/button/button_state.dart';
 import 'package:flutter_food_hub/common/bloc/button/button_state_cubit.dart';
+import 'package:flutter_food_hub/common/helper/toasts.dart';
 import 'package:flutter_food_hub/common/widget/custom_button.dart';
 import 'package:flutter_food_hub/common/widget/custom_input.dart';
 import 'package:flutter_food_hub/core/configs/assets/app_images.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_food_hub/core/configs/theme/app_colors.dart';
 import 'package:flutter_food_hub/data/models/signup_req_params.dart';
 import 'package:flutter_food_hub/domain/usecases/signup.dart';
 import 'package:flutter_food_hub/service_locator.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
@@ -44,11 +46,21 @@ class _SignupPageState extends State<SignupPage> {
         child: BlocListener<ButtonStateCubit, ButtonState>(
           listener: (context, state) {
             if (state is ButtonSuccessState) {
-              () => context.go(AppRouter.verify);
+              context.go(AppRouter.verify);
+              Toasts().showToast("Đăng ký thành công", ToastType.success);
             }
             if (state is ButtonFailureState) {
               var snackBar = SnackBar(content: Text(state.errorMessage));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              Fluttertoast.showToast(
+                msg: state.errorMessage,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
             }
           },
           child: SafeArea(

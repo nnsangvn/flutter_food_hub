@@ -22,4 +22,16 @@ class AuthApiServiceImpl extends AuthApiService {
       return Left(e.response?.data['message'] ?? e.response);
     }
   }
+
+  Future<Either> verify(SignupReqParams signupReq) async {
+    try {
+      var response = await sl<DioClient>().post(
+        ApiUrls.register,
+        data: signupReq.toMap(),
+      );
+      return Right(response);
+    } on DioException catch (e) {
+      return Left(e.response?.data['message'] ?? e.response);
+    }
+  }
 }
