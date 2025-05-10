@@ -48,3 +48,6 @@ app.*.map.json
 .env
 .env.*
 !.env.example
+
+# Ignore all generated *.g.dart files
+*.g.dart

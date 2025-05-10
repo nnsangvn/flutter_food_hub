@@ -13,7 +13,14 @@ class ButtonStateCubit extends Cubit<ButtonState> {
       Either result = await usecase.call(param: params);
 
       result.fold((error) {
-        emit(ButtonFailureState(errorMessage: error));
+        var message = error;
+        if (message is List) {
+          message = message.join(', ');
+        } else if (message is Map && message['message'] != null) {
+          message = message['message'];
+          if (message is List) message = message.join(', ');
+        }
+        emit(ButtonFailureState(errorMessage: message.toString()));
       }, (data) {
         emit(ButtonSuccessState());
       });

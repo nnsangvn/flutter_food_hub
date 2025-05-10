@@ -14,8 +14,7 @@ class AuthRepositoryImpl extends AuthRepository {
     return result.fold((error) {
       return Left(error);
     }, (data) async {
-      Response response = data;
-      return Right(response);
+      return Right(data);
     });
   }
 
@@ -25,8 +24,7 @@ class AuthRepositoryImpl extends AuthRepository {
     return result.fold((error) {
       return Left(error);
     }, (data) async {
-      Response response = data;
-      return Right(response);
+      return Right(data);
     });
   }
 
@@ -36,8 +34,7 @@ class AuthRepositoryImpl extends AuthRepository {
     return result.fold((error) {
       return Left(error);
     }, (data) async {
-      Response response = data;
-      return Right(response);
+      return Right(data);
     });
   }
 
@@ -47,8 +44,7 @@ class AuthRepositoryImpl extends AuthRepository {
     return result.fold((error) {
       return Left(error);
     }, (data) async {
-      Response response = data;
-      return Right(response);
+      return Right(data);
     });
   }
 }

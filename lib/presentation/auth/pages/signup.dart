@@ -66,6 +66,7 @@ class _SignupPageState extends State<SignupPage> {
                 textColor: Colors.white,
                 fontSize: 16.0,
               );
+              print(state.errorMessage);
             }
           },
           child: SafeArea(
