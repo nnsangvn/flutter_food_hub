@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_food_hub/core/configs/theme/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String title;
   final double? height;
   final double? width;

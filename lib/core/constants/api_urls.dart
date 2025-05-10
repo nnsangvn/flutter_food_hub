@@ -3,4 +3,5 @@ class ApiUrls {
   static const register = '${baseURL}api/v1/auth/register';
   static const verifyCode = '${baseURL}api/v1/auth/verify-code';
   static const resendCode = '${baseURL}api/v1/auth/verify-email';
+  static const signin = '${baseURL}api/v1/auth/login';
 }
