@@ -51,3 +51,6 @@ app.*.map.json
 
 # Ignore all generated *.g.dart files
 *.g.dart
+
+# FVM Version Cache
+.fvm/
