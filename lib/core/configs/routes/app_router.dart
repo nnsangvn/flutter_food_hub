@@ -8,10 +8,8 @@ import 'package:flutter_food_hub/presentation/auth/pages/verify_code.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/welcome_page.dart';
 import 'package:flutter_food_hub/presentation/cart/pages/cart_page.dart';
 import 'package:flutter_food_hub/presentation/home/pages/home_page.dart';
-import 'package:flutter_food_hub/presentation/home/pages/home_content.dart';
 import 'package:flutter_food_hub/presentation/love/pages/love_page.dart';
 import 'package:flutter_food_hub/presentation/noti/pages/noti_page.dart';
-import 'package:flutter_food_hub/presentation/notification/pages/notification_page.dart';
 import 'package:flutter_food_hub/presentation/profile/pages/profile_page.dart';
 import 'package:flutter_food_hub/splash.dart';
 import 'package:go_router/go_router.dart';
@@ -33,7 +31,7 @@ abstract final class AppRouter {
   static const String profile = '/profile';
 
   static final GoRouter _router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     routes: [
@@ -49,7 +47,7 @@ abstract final class AppRouter {
           GoRoute(
             path: home,
             name: home,
-            builder: (context, state) => const HomeContent(),
+            builder: (context, state) => const HomePage(),
           ),
           GoRoute(
             path: cart,

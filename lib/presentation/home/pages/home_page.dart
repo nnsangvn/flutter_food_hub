@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-class HomePages extends StatefulWidget {
-  final Widget screen;
-
-  const HomePages({super.key, required this.screen});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomePages> createState() => _HomePagesState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePagesState extends State<HomePages> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return widget.screen;
+    return Scaffold(
+      body: Center(
+        child: Text('Trang chủ'),
+      ),
+    );
   }
 }
