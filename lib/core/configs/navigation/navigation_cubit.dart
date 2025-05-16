@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_food_hub/core/configs/navigation/tab_item.dart';
 
-class NavigationCubit extends Cubit<int> {
-  NavigationCubit() : super(0);
+class NavigationCubit extends Cubit<TabItem> {
+  NavigationCubit() : super(TabItem.home);
 
-  void selectTab(int index) => emit(index);
+  void selectTab(TabItem tab) => emit(tab);
 }

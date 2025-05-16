@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_food_hub/core/configs/navigation/navigation_cubit.dart';
+import 'package:flutter_food_hub/main_navigation.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/signin.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/signup.dart';
 import 'package:flutter_food_hub/presentation/auth/pages/verify_code.dart';
@@ -8,6 +9,9 @@ import 'package:flutter_food_hub/presentation/auth/pages/welcome_page.dart';
 import 'package:flutter_food_hub/presentation/cart/pages/cart_page.dart';
 import 'package:flutter_food_hub/presentation/home/pages/home_page.dart';
 import 'package:flutter_food_hub/presentation/home/pages/home_content.dart';
+import 'package:flutter_food_hub/presentation/love/pages/love_page.dart';
+import 'package:flutter_food_hub/presentation/noti/pages/noti_page.dart';
+import 'package:flutter_food_hub/presentation/notification/pages/notification_page.dart';
 import 'package:flutter_food_hub/presentation/profile/pages/profile_page.dart';
 import 'package:flutter_food_hub/splash.dart';
 import 'package:go_router/go_router.dart';
@@ -21,13 +25,15 @@ abstract final class AppRouter {
   static const String signup = '/signup';
   static const String signin = '/signin';
   static const String verify = '/verify';
-  static const String home = '/home';
-  static const String profile = '/profile';
-  static const String cart = '/cart';
   static const String welcome = '/welcome';
+  static const String home = '/home';
+  static const String cart = '/cart';
+  static const String love = '/love';
+  static const String noti = '/notification';
+  static const String profile = '/profile';
 
   static final GoRouter _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/home',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     routes: [
@@ -36,7 +42,7 @@ abstract final class AppRouter {
         builder: (context, state, child) {
           return BlocProvider(
             create: (context) => NavigationCubit(),
-            child: HomePages(screen: child),
+            child: MainNavigation(screen: child),
           );
         },
         routes: [
@@ -49,6 +55,16 @@ abstract final class AppRouter {
             path: cart,
             name: cart,
             builder: (context, state) => const CartPage(),
+          ),
+          GoRoute(
+            path: love,
+            name: love,
+            builder: (context, state) => const LovePage(),
+          ),
+          GoRoute(
+            path: noti,
+            name: noti,
+            builder: (context, state) => const NotiPage(),
           ),
           GoRoute(
             path: profile,
