@@ -31,7 +31,7 @@ abstract final class AppRouter {
   static const String profile = '/profile';
 
   static final GoRouter _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/home',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     routes: [
@@ -47,7 +47,7 @@ abstract final class AppRouter {
           GoRoute(
             path: home,
             name: home,
-            builder: (context, state) => const HomePage(),
+            builder: (context, state) => HomePage(),
           ),
           GoRoute(
             path: cart,
